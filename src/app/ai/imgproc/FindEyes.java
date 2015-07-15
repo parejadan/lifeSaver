@@ -11,6 +11,9 @@ import org.opencv.imgproc.Imgproc;
 import org.opencv.core.CvType;
 
 public class FindEyes {
+
+	//private static final String eyeTAG = "imgproc::FindEyes";
+	
 	public static int eyeRegW, eyeRegH; //width and height of eye region
 	public static double[] cEye; //coordinates of eyes center (relative to overall image)
 	
@@ -125,6 +128,8 @@ public class FindEyes {
 
 		//find the maximum point
 		Core.MinMaxLocResult mmr = Core.minMaxLoc(outSum);
+		//eyeROI.release(); gradX.release(); gradY.release(); mags.release(); weight.release(); outSum.release();
+		
 		return unscalePoint(mmr.maxLoc, eye);
 	}
 	
@@ -138,7 +143,7 @@ public class FindEyes {
 	 */
 	public Point getPupil(Mat frame_gray, Rect face, boolean leftEye) {
 		Mat faceROI = frame_gray.submat(face);
-		Point pupil = null;
+		Point pupil = new Point(-1, -1);
 
 		if (ProcVars.debug) Core.rectangle(frame_gray, face.tl(), face.br(), ProcVars._COLOR); //draw eye region - for debugging
 
@@ -164,8 +169,10 @@ public class FindEyes {
 			pupil.x += cEye[0];
 			pupil.y += cEye[1];
 		}
-
-		faceROI.release(); faceROI = null;
+		
+		if (ProcVars.debug) Core.circle(frame_gray, pupil, ProcVars._THICK, ProcVars._COLOR);
+		//faceROI.release();
+		
 		return pupil;
 	}
 

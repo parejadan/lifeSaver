@@ -7,6 +7,8 @@ import android.view.View;
 
 public class MenuActivity extends Activity {
 	
+    //private static final String menuTAG = "lifesaver::MenuActivity";
+	
 	protected void onCreate(Bundle icicle) {
 		super.onCreate(icicle);
 		
@@ -14,7 +16,7 @@ public class MenuActivity extends Activity {
 	}
 
 	public void startTraining(View v) {
-		Intent  intent = new Intent(MenuActivity.this, CamActivity.class);
+		Intent  intent = new Intent(MenuActivity.this, TrainActivity.class);
 		startActivity(intent);
 		finish();
 	}

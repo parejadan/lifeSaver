@@ -10,6 +10,8 @@ import org.opencv.objdetect.CascadeClassifier;
 
 public class FindFace {
 
+    //private static final String faceTAG = "imgproc::FindFace";
+	
 	private static CascadeClassifier detector;
 	
 	public FindFace(CascadeClassifier faceClassifier) { detector = faceClassifier; }
@@ -18,14 +20,13 @@ public class FindFace {
 	 * Uses a cascade-classifier to detect the face in a given image. By default it returns
 	 *  the largest face.
 	 * @param inputFrame - original image to extract face from
-	 * @param mGray - pointer that says where to store gray scaled image (pass null if not debugging)
-	 * @return - rectangular region that says where the face is located
+	 * @return ProcStruct - structure to store processed input frame and detected face region
 	 */
-	public Mat getFace(Mat inputFrame) {
+	public ProcStruct getFace(Mat inputFrame) {
         ArrayList<Mat> mv = new ArrayList<Mat>(3);
         MatOfRect faces = new MatOfRect();
         Rect mxFace = null;
-        
+
         //read in frame and save its most gray-scale version
         org.opencv.core.Core.split(inputFrame, mv);
         Mat mGray = mv.get(2);
@@ -44,8 +45,9 @@ public class FindFace {
             
             if (ProcVars.debug) Core.rectangle(mGray, mxFace.br(), mxFace.tl(), ProcVars._COLOR, ProcVars._THICK);
         }
-
-        return mGray;
+        
+        //mv.get(0).release(); mv.get(1).release(); //address any possible memory leakage
+        return new ProcStruct(mGray, mxFace);
 	}
 	
 }

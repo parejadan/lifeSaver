@@ -4,6 +4,8 @@ import java.util.ArrayList;
 
 public class Stats {
 	
+    //private static final String faceTAG = "Stats::Stats";
+	
 	public Stats(){ };
 	
 	/** Computes the average on a  given dataset
@@ -112,4 +114,7 @@ public class Stats {
 		//set data value to original scale
 		return (dex+min) / scalar;
 	}
+	
+	public double length(double x1, double y1, double x2, double y2) { return (int) Math.sqrt( Math.pow(x1-x2, 2.0) + Math.pow(y1-y2, 2.0) ); }
+	
 }
