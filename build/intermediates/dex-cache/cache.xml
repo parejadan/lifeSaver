@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<items version="2" >
+
+    <item
+        jar="/home/daniel/opencv/lifeSaver/lifeSaver/build/intermediates/exploded-aar/lifeSaver/openCVLibrary249/unspecified/jars/classes.jar"
+        jumboMode="false"
+        revision="23.0.0 rc2"
+        sha1="699594e0a3f7e45aaf4eb758609051808d33149f">
+        <dex dex="/home/daniel/opencv/lifeSaver/lifeSaver/build/intermediates/pre-dexed/debug/classes-e99a62806cd6995530b5a7f71d671f23985681c9.jar" />
+    </item>
+
+</items>
