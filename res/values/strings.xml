@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">lifeSaver</string>
-    <string name="startTrn">Start Training</string>
-    <string name="startTst">Start Testing</string>
+    <string name="startMonitor">Start Monitoring</string>
     <string name="checkView">Check Camera View</string>
 </resources>

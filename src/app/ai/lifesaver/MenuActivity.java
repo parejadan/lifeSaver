@@ -7,7 +7,7 @@ import android.view.View;
 
 public class MenuActivity extends Activity {
 	
-    //private static final String TAG = "lifesaver::MenuActivity";
+    //private static final String TAG = "Menu";
 	
 	protected void onCreate(Bundle icicle) {
 		super.onCreate(icicle);
@@ -15,20 +15,10 @@ public class MenuActivity extends Activity {
 		setContentView(R.layout.activity_menu);
 	}
 
-	public void startTraining(View v) {
-		//Intent  intent = new Intent(MenuActivity.this, TrainingActivity.class);
-		//startActivity(intent);
-
-        Intent intent = new Intent("android.media.action.IMAGE_CAPTURE");
-        startActivity(intent);
-
-
+	public void startMonitor(View v) {
+		Intent  intent = new Intent(MenuActivity.this, MonitorActivity.class);
+		startActivity(intent);
     }
-    /*
-    public void startTesting(View v) {
-        Intent  intent = new Intent(MenuActivity.this, TestingActivity.class);
-        startActivity(intent);
-    }*/
 
 
 	public void checkCamView(View v) {
@@ -40,8 +30,10 @@ public class MenuActivity extends Activity {
     static {
         System.loadLibrary("bottleNeck");
         System.loadLibrary("normalize");
-        //System.loadLibrary("gradient");
-        //System.loadLibrary("gradientT");
+        System.loadLibrary("matrixMagnitude");
+        System.loadLibrary("nativeGaussBlur");
+        System.loadLibrary("invert");
+        System.loadLibrary("circle");
 
     }
 }

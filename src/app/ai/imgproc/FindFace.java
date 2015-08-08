@@ -10,7 +10,7 @@ import org.opencv.objdetect.CascadeClassifier;
 
 public class FindFace {
 
-    //private final String faceTAG = getClass().getSimpleName();
+    //private final String TAG = "FindFace";
 	
 	private static CascadeClassifier detector;
 	
@@ -30,11 +30,11 @@ public class FindFace {
         //read in frame and save its most gray-scale version
         org.opencv.core.Core.split(inputFrame, mv);
         Mat mGray = mv.get(2);
-        if (ProcVars.mAbsoluteFS == 0) //if face size is not initialize, estimate a possible minimum size
-        	ProcVars.mAbsoluteFS = (int) (mGray.rows() * ProcVars.mRelativeFS);
+        if (ProcV.mAbsoluteFS == 0) //if face size is not initialize, estimate a possible minimum size
+        	ProcV.mAbsoluteFS = (int) (mGray.rows() * ProcV.mRelativeFS);
         
         detector.detectMultiScale(mGray, faces, 1.1, 2, 2,
-        		new org.opencv.core.Size(ProcVars.mAbsoluteFS, ProcVars.mRelativeFS), new org.opencv.core.Size());
+        		new org.opencv.core.Size(ProcV.mAbsoluteFS, ProcV.mRelativeFS), new org.opencv.core.Size());
         Rect[] facesArray = faces.toArray();
 
         if (facesArray.length > 0) {
@@ -43,7 +43,7 @@ public class FindFace {
             	if (tmp.height+tmp.width > mxFace.height+mxFace.width) //addition is considered faster arithmetic than multiplication
             		mxFace = tmp;
             
-            //if (ProcVars.debug) Core.rectangle(mGray, mxFace.br(), mxFace.tl(), ProcVars._COLOR, ProcVars._THICK);
+            //if (ProcV.debug) Core.rectangle(mGray, mxFace.br(), mxFace.tl(), ProcV._COLOR, ProcV._THICK);
         }
 
         mv.get(0).release(); mv.get(1).release(); //address any possible memory leakage

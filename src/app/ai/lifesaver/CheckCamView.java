@@ -17,15 +17,17 @@ import org.opencv.core.Mat;
 import android.app.Activity;
 import android.content.Context;
 import android.os.Bundle;
-import android.util.Log;
+//import android.util.Log;
 import android.view.WindowManager;
 import app.ai.imgproc.FindEyes;
 import app.ai.imgproc.FindFace;
 import app.ai.imgproc.ProcStruct;
+import app.ai.core.*;
+
 
 public class CheckCamView extends Activity implements CvCameraViewListener2 {
 
-    private final String TAG = getClass().getSimpleName();
+    //private final String TAG = "CheckCam";
 
     private CameraBridgeViewBase mOpenCvCameraView;
     private static Mat frame = null;
@@ -38,7 +40,7 @@ public class CheckCamView extends Activity implements CvCameraViewListener2 {
         public void onManagerConnected(int status) {
             switch (status) {
                 case LoaderCallbackInterface.SUCCESS: {
-                    Log.i(TAG, "OpenCV loaded successfully");
+                    //Log.i(TAG, "OpenCV loaded successfully");
 
                     try {
                         // load cascade file from application resources
@@ -61,10 +63,10 @@ public class CheckCamView extends Activity implements CvCameraViewListener2 {
 
                     } catch (IOException e) {
                         e.printStackTrace();
-                        Log.e(TAG, "Failed to load cascade. Exception thrown: " + e);
+                        //Log.e(TAG, "Failed to load cascade. Exception thrown: " + e);
                     }
 
-                    mOpenCvCameraView.setMaxFrameSize(CoreVars.maxWidth, CoreVars.maxHeight);
+                    mOpenCvCameraView.setMaxFrameSize(CoreV.maxWidth, CoreV.maxHeight);
                     mOpenCvCameraView.enableView();
                 } break;
                 
@@ -76,7 +78,7 @@ public class CheckCamView extends Activity implements CvCameraViewListener2 {
     };
 
     public CheckCamView() {
-        Log.i(TAG, "Instantiated new " + this.getClass());
+        //Log.i(TAG, "Instantiated new " + this.getClass());
     }
 
     /** Called when the activity is first created. */
@@ -88,7 +90,7 @@ public class CheckCamView extends Activity implements CvCameraViewListener2 {
         setContentView(R.layout.face_detect_surface_view);
         mOpenCvCameraView = (CameraBridgeViewBase) findViewById(R.id.fd_activity_surface_view); //set view to screen
         mOpenCvCameraView.setCameraIndex(1); //use front camera
-        mOpenCvCameraView.setMaxFrameSize(CoreVars.maxWidth, CoreVars.maxHeight);
+        mOpenCvCameraView.setMaxFrameSize(CoreV.maxWidth, CoreV.maxHeight);
         mOpenCvCameraView.setCvCameraViewListener(this); //receive image, process it then display
         mOpenCvCameraView.enableFpsMeter();
     }

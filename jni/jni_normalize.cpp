@@ -6,8 +6,8 @@
 extern "C" {
 
 
-JNIEXPORT void Java_app_ai_imgproc_FindEyes_normalize(JNIEnv*, jobject, jdouble, jlong, jlong, jlong);
-JNIEXPORT void Java_app_ai_imgproc_FindEyes_normalize(JNIEnv*, jobject, jdouble addrT, jlong addrX, jlong addrY, jlong addrM) {
+JNIEXPORT void Java_app_ai_imgproc_Helpers_normalize(JNIEnv*, jobject, jdouble, jlong, jlong, jlong);
+JNIEXPORT void Java_app_ai_imgproc_Helpers_normalize(JNIEnv*, jobject, jdouble addrT, jlong addrX, jlong addrY, jlong addrM) {
 
 	double gradientThresh = (double) addrT;
 	cv::Mat gradX = *(cv::Mat*)addrX;

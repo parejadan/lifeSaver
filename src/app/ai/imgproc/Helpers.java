@@ -2,7 +2,6 @@ package app.ai.imgproc;
 
 import org.opencv.core.Core;
 import org.opencv.core.Mat;
-import org.opencv.core.CvType;
 import org.opencv.core.MatOfDouble;
 
 public class Helpers {
@@ -10,43 +9,13 @@ public class Helpers {
 	//private static final String helpTAG = "imgproc::Helpers";
 	
 	public Helpers() {};
-			
-	public Mat matrixMagnitude(Mat matX, Mat matY, int rows, int cols) {
-		Mat mags = Mat.zeros(rows, cols, CvType.CV_64F);
-		/*for (int y = 0; y < rows; y++) {
-			for (int x = 0; x < cols; x++) {
-				mags.put(y, x,
-						Math.sqrt(
-								Math.pow(matX.get(y, x)[0], 2.0) + Math.pow(matY.get(y, x)[0], 2.0)
-										));
-			}
-		}*/
-		//compute the magnitude of each pixel
-		Core.add(matX.mul(matX), matY.mul(matY), mags);
-		Core.sqrt(mags, mags);
-		
-		return mags;
-	}
-
-	public Mat matrixMagnitude(Mat matX, Mat matY) {
-		int rows = matX.rows()-1, cols = matX.cols()-1;
-		Mat mags = Mat.zeros(rows, cols, CvType.CV_64F);
-		/*for (int y = 0; y < rows; y++) {
-			for (int x = 0; x < cols; x++) {
-				mags.put(y, x,
-						Math.sqrt(
-								Math.pow(matX.get(y, x)[0], 2.0) + Math.pow(matY.get(y, x)[0], 2.0)
-										));
-			}
-		}*/
-		//compute the magnitude of each pixel
-		Core.add(matX.mul(matX), matY.mul(matY), mags);
-		Core.sqrt(mags, mags);
-		
-		return mags;
-	}
-
 	
+    public native void normalize(double thresh, long addrX, long addrY, long addrM);
+    public native void matrixMagnitude(long addrX, long addrY, long addrM);
+    public native void nativeGaussBlur(long addrSRC, long addrDST, int blrX, int blrY, double sigX, double  sigY);
+    public native void invert(long addr);
+    public native void circle(long addr, double x, double y, int size, int color);
+		
 	public double computeDynamicThreshold(Mat mat, double stdDevFactor) {
 		MatOfDouble std = new MatOfDouble(), mean = new MatOfDouble();
 		Core.meanStdDev(mat, mean, std);

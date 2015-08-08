@@ -25,7 +25,7 @@ public class ProcStruct {
 		
 		if (p.x == -1) { //flag if face was not face detected
 			pupil = p;
-		} else if ( FindEyes.cEye[1]/p.y >= ProcVars.closedThresh ) { //flag incorrect eye detection ("if" true when eyes are closed)
+		} else if ( FindEyes.cEye[1]/p.y >= ProcV.closedThresh ) { //flag incorrect eye detection ("if" true when eyes are closed)
     		pupil = new Point(-1, -1);
     	} else { //store detected eyes
     		pupil = p;
@@ -39,8 +39,8 @@ public class ProcStruct {
     		pupil.y -= FindEyes.cEye[1];
 		}
 		
-		pupil.x = (pupil.x / FindEyes.eyeRegW) * ProcVars.placeVal;
-		pupil.y = (pupil.y / FindEyes.eyeRegW) * ProcVars.placeVal;
+		pupil.x = (pupil.x / FindEyes.eyeRegW) * ProcV.placeVal;
+		pupil.y = (pupil.y / FindEyes.eyeRegW) * ProcV.placeVal;
 
 	}
 	
